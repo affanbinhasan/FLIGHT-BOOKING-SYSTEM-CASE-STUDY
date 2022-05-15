@@ -1,6 +1,8 @@
 package co.flight.bookms.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document("flight-booking")
 public class Booking {
 
     private String booking_ref_id;

@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import co.flight.bookms.model.Booking;
 import co.flight.bookms.model.User;
 
-public interface BookingRepo extends MongoRepository<User,String> {
+public interface BookingRepo extends MongoRepository<Booking,String> {
     // @Query("{flight_id : ?0}")
     // List<Booking> getBookingbyId();
 

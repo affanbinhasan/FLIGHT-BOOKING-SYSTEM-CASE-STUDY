@@ -2,7 +2,7 @@ package co.flight.bookms.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("test_user")
+//@Document("test_user")
 public class User {
 
     String firstName;
