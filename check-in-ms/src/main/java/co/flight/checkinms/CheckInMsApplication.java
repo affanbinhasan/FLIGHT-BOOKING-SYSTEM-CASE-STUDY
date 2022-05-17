@@ -8,8 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import org.springdoc.core.GroupedOpenApi;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+
 @SpringBootApplication
 @EnableEurekaClient
+@OpenAPIDefinition
 public class CheckInMsApplication {
 
 	public static void main(String[] args) {
@@ -24,6 +31,21 @@ public class CheckInMsApplication {
 		clientHttpRequestFactory.setConnectTimeout(3000);
 		return new RestTemplate(clientHttpRequestFactory);
 		// return new RestTemplate();
+	}
+	@Bean
+	public GroupedOpenApi swaggerConfig() {
+		return GroupedOpenApi.builder()
+			.group("Server-APIs")
+			.pathsToMatch("/flight-check-in/**")
+			.build();
+	}
+
+	@Bean
+	public OpenAPI swaggerApiInfoConfig(){
+		return new OpenAPI()
+		.info(new Info().title("Flight Check-In Microservice")
+		.description("Java Rest API Microservice Application")
+		.license(new License().name("GitHub").url("http://github.com/affanbinhasan")));
 	}
 
 }

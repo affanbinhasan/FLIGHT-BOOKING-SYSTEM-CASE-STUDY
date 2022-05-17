@@ -8,17 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.flight.searchms.model.Flight;
 import co.flight.searchms.repository.FlightRepo;
 
 @RestController
+@RequestMapping("/flight")
 public class FlightController {
     @Autowired
     FlightRepo FlightRepo;
 
-    @GetMapping("/getflight")
+    @GetMapping("/admin/getflight")
     public List<Flight> getFlight(){
         return FlightRepo.findAll();
     }
@@ -33,7 +35,7 @@ public class FlightController {
         return FlightRepo.findById(id);
     }
 
-    @PostMapping("/addflight")
+    @PostMapping("/admin/addflight")
     public Flight addFlight(@RequestBody Flight flight){
         FlightRepo.save(flight);
         return flight;
