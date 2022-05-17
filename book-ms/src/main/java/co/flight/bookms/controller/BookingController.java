@@ -3,7 +3,7 @@ package co.flight.bookms.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+// import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import co.flight.bookms.configuration.RabbitMQConfiguration;
 import co.flight.bookms.model.Booking;
 import co.flight.bookms.model.Flight;
 import co.flight.bookms.model.User;
@@ -50,7 +49,7 @@ public class BookingController {
     public Booking getBooking(@RequestBody User user){
         Flight flight = restTemplate.getForObject("http://flight-search-ms/getflight/test", Flight.class);
         User user_dum = user;
-        Booking booking = new Booking("1", flight, user_dum, 200);
+        Booking booking = new Booking("3", flight, user_dum, 200);
         BookingRepo.save(booking);
         return booking;
     }
@@ -60,10 +59,10 @@ public class BookingController {
         return BookingRepo.findAll();
     }
 
-    @GetMapping("/checkin/{id}")
-    public Optional<Booking> getCheckIn(@PathVariable String id){
+    @GetMapping("/book/{id}")
+    public Booking getCheckIn(@PathVariable String id){
         
-        return BookingRepo.findById(id);
+        return BookingRepo.getBookingbyId(id);
     }
    
 }

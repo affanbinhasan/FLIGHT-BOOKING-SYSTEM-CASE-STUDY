@@ -1,0 +1,24 @@
+{
+    "_id": {
+        "$oid": "6281577d81905d13b7c808d0"
+    },
+    "booking_ref_id": "1",
+    "flight": {
+        "flight_id": "test",
+        "flight_name": "test",
+        "flight_origin": "test",
+        "flight_destination": "test",
+        "flight_arrival": "test",
+        "flight_departure": "test",
+        "duration": 100
+    },
+    "user": {
+        "firstName": "test",
+        "lastName": "test",
+        "gender": "M",
+        "contact": "10101010",
+        "date_of_journey": "24-04-05"
+    },
+    "amount_to_pay": 200,
+    "_class": "co.flight.bookms.model.Booking"
+}

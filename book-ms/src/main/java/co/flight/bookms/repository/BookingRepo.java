@@ -9,8 +9,8 @@ import co.flight.bookms.model.Booking;
 import co.flight.bookms.model.User;
 
 public interface BookingRepo extends MongoRepository<Booking,String> {
-    // @Query("{flight_id : ?0}")
-    // List<Booking> getBookingbyId();
+    @Query("{booking_ref_id : ?0}")
+    Booking getBookingbyId(String id);
 
     // @Query("{name : ?0}")
     // List<Booking> getBookingbyName();

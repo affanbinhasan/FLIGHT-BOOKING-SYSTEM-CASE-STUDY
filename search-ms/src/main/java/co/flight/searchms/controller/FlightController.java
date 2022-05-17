@@ -23,6 +23,11 @@ public class FlightController {
         return FlightRepo.findAll();
     }
 
+    @GetMapping("/getflight/{origin}/{destination}")
+    public List<Flight> getFlightByOriginDest(@PathVariable String origin,@PathVariable String destination){
+        return FlightRepo.getMatchingFlight(origin, destination);
+    }
+
     @GetMapping("/getflight/{id}")
     public Optional<Flight> getFlightbyId(@PathVariable String id){
         return FlightRepo.findById(id);

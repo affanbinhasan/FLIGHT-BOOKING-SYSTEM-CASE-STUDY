@@ -14,6 +14,6 @@ public interface FlightRepo extends MongoRepository<Flight,String>{
     // @Query("{name : ?0}")
     // List<Flight> getFlightbyname();
 
-    @Query("{ $or: [ { 'flight_origin' : ?0 }, { 'flight_destination' : ?0 } ] }")
+    @Query("{ $and: [ { 'flight_origin' : ?0 }, { 'flight_destination' : ?0 } ] }")
     List<Flight> getMatchingFlight(String flight_origin,String flight_destination);
 }
