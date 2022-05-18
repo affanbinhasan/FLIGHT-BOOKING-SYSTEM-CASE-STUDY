@@ -57,6 +57,7 @@
 h2{
   color: orange;
   
+  
 }
 
 input{
@@ -72,4 +73,17 @@ input{
 body{
   background-image: url('asset/background.jpg');
   font-family: 'Times New Roman', Times, serif;
+}
+
+#search{
+  height: 70px;
+  width: 700px;
+  margin-top:10px;
+  border-radius:7px;
+  background-color: orange;
+}
+
+h3{
+  
+  color: white;
 }
