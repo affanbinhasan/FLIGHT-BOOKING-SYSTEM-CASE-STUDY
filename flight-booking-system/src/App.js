@@ -16,14 +16,15 @@ function App() {
           <p>n</p>
             <div>
                 <a href="/search"><button>Search</button></a>
-                <a href="/book"><button>Book</button></a>
+                <a href="/booking"><button>Book</button></a>
                 <a href="/check-in"><button>Check-In</button></a>
             </div>
             {/* <Search/> */}
-            <FlightBooking/>
+            {/* <FlightSearch/> */}
+            {/* <FlightBooking/> */}
             <Routes>
               <Route exact path='/search' element={<FlightSearch/>}></Route>
-              <Route exact path='/book' element={<Book/>}></Route>
+              <Route exact path='/booking' element={<FlightBooking/>}></Route>
               <Route exact path='/check-in' element={<CheckIn/>}></Route>
             </Routes>
 

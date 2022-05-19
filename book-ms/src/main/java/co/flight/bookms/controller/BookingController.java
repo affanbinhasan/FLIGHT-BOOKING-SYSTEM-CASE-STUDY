@@ -2,6 +2,7 @@ package co.flight.bookms.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 // import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +48,12 @@ public class BookingController {
     //     return user;
     // }
 
-    @PostMapping("/book")
-    public Booking getBooking(@RequestBody User user){
-        Flight flight = restTemplate.getForObject("http://flight-search-ms/getflight/test", Flight.class);
+    @PostMapping("/book/{id}")
+    public Booking getBooking(@RequestBody User user,@PathVariable String id){
+        Flight flight = restTemplate.getForObject("http://flight-search-ms/flight/getflight/"+id, Flight.class);
         User user_dum = user;
-        Booking booking = new Booking("3", flight, user_dum, 200);
+        String uniqueID = UUID.randomUUID().toString();
+        Booking booking = new Booking(uniqueID, flight, user_dum, 200);
         BookingRepo.save(booking);
         return booking;
     }
