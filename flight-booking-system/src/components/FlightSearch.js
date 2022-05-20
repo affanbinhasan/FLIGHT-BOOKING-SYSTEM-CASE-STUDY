@@ -40,7 +40,7 @@ export default class FlightSearch extends Component {
       this.setState({ flight: response.data})
       console.log(this.state)}
       else{
-        console.log("error getting data" + response.statusText)
+        console.log("error getting data" + response.data)
       }
     })
     .catch( error => {

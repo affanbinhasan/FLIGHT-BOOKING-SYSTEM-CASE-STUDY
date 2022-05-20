@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
     baseURL: 'http://localhost:9000/flight-booking-ms/booking'
+    // baseURL: "http://localhost:9002/booking"
 })
 
 export class FlightBooking extends Component {

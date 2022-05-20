@@ -20,7 +20,10 @@ import co.flight.bookms.model.Flight;
 import co.flight.bookms.model.User;
 import co.flight.bookms.repository.BookingRepo;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 // @Component
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/booking")
 public class BookingController {

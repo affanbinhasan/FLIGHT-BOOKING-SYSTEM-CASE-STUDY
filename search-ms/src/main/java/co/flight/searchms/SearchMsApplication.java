@@ -11,6 +11,9 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @SpringBootApplication
 @EnableEurekaClient
 @OpenAPIDefinition
@@ -34,6 +37,16 @@ public class SearchMsApplication {
 		.info(new Info().title("Flight Search Microservice")
 		.description("Java Rest API Microservice Application")
 		.license(new License().name("GitHub").url("http://github.com/affanbinhasan")));
+	}
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/flight").allowedOrigins("http://localhost:3000");
+			}
+		};
 	}
 
 }
