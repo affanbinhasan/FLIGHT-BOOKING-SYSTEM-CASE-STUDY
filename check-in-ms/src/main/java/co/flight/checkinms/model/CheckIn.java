@@ -8,11 +8,11 @@ public class CheckIn {
     @Id
     private String checkInId;
 
-    private Booking booking;
+    private String booking_ref_id;
     private String seatNo;
-    public CheckIn(String checkInId, Booking booking, String seatNo) {
+    public CheckIn(String checkInId, String booking_ref_id, String seatNo) {
         this.checkInId = checkInId;
-        this.booking = booking;
+        this.booking_ref_id = booking_ref_id;
         this.seatNo = seatNo;
     }
     public String getCheckInId() {
@@ -21,11 +21,11 @@ public class CheckIn {
     public void setCheckInId(String checkInId) {
         this.checkInId = checkInId;
     }
-    public Booking getBooking() {
-        return booking;
+    public String getBooking_ref_id() {
+        return booking_ref_id;
     }
-    public void setBooking(Booking booking) {
-        this.booking = booking;
+    public void setBooking_ref_id(String booking_ref_id) {
+        this.booking_ref_id = booking_ref_id;
     }
     public String getSeatNo() {
         return seatNo;
@@ -35,7 +35,8 @@ public class CheckIn {
     }
     @Override
     public String toString() {
-        return "CheckIn [booking=" + booking + ", checkInId=" + checkInId + ", seatNo=" + seatNo + "]";
+        return "CheckIn [booking_ref_id=" + booking_ref_id + ", checkInId=" + checkInId + ", seatNo=" + seatNo + "]";
     }
+    
     
 }

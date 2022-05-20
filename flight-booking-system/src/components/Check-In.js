@@ -2,7 +2,8 @@ import React from "react";
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:9000/flight-check-in-ms/flight-check-in'
+    // baseURL: 'http://localhost:9000/flight-check-in-ms/flight-check-in'
+    baseURL: "http://localhost:9003/flight-check-in"
 })
 
 export class CheckIn extends React.Component{
@@ -10,7 +11,9 @@ export class CheckIn extends React.Component{
         super(props)
         
         this.state = {
-            ref_id:''
+            ref_id:'',
+            checkin: []
+
         }
       }
   
@@ -23,13 +26,17 @@ export class CheckIn extends React.Component{
           console.log('id is = ' + this.state.ref_id );
           api.get("/check-in/"+this.state.ref_id)
           .then( response => { 
-            //   if(response === 200){
-            //   console.log(response.status)
-            //   console.log(response.data)
-            //   } 
+              
+                this.setState({checkin : response.data })
+                console.log("below is data")
+                // console.log(this.state.checkin)
+                
+              
             console.log(response);
             } )
           .catch( error => { console.log(error)})
+
+        //   console.log(this.state.checkin)
       }
   
     render() {
@@ -51,6 +58,14 @@ export class CheckIn extends React.Component{
                 <button type='submit'>Check-In</button>
             </form>
             </div>
+            <div id = 'CheckInResults'>
+          {this.state.checkin.map(checkin => <div className='check-in-info' key={checkin.checkInId}>
+          
+              <h3>Thank You for Checking In Your Seat Number is : {checkin.seatNo}</h3>
+              
+          </div>)
+          }
+        </div>
         </div>
     )
 }}

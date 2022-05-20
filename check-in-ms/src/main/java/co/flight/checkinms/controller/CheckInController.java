@@ -26,11 +26,13 @@ public class CheckInController {
     RestTemplate restTemplate;
 
     @GetMapping("/check-in/{id}")
-    public Booking getCheckIn(@PathVariable String id){
+    public List<CheckIn> getCheckIn(@PathVariable String id){
         Booking booking = restTemplate.getForObject("http://flight-booking-ms/booking/book/"+id, Booking.class);
-        CheckIn checkIn = new CheckIn("ch01",booking,"28a");
+        String booking_id = booking.getBooking_ref_id();
+        CheckIn checkIn = new CheckIn("ch01",booking_id,"28a");
+        List<CheckIn> newList = Arrays.asList(checkIn);
         //CheckInrepo.save(checkIn);
-        return booking;
+        return newList;
     }
 
     @GetMapping("/getcheck-in")
