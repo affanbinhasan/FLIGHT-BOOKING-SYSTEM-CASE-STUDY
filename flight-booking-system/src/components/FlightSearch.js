@@ -68,13 +68,13 @@ export default class FlightSearch extends Component {
                 <button type='submit'>Book</button>
             </form>
           <div id = 'searchResults' >
-          {this.state.flight.map(flight => <div className='flight-info' key={flight.flight_id}>
-          
-              <h3>flight name : {flight.flight_name}    origin : {flight.flight_origin}    destination : {flight.flight_destination} duration : {flight.duration}</h3>
-              <a href='localhost:3000/booking'><button>Book</button></a>
-          </div>)
-          }
-        </div>
+            {this.state.flight.map(flight => <div className='flight-info' key={flight.flight_id}>
+            
+                <h3>flight name : {flight.flight_name}    origin : {flight.flight_origin}    destination : {flight.flight_destination} duration : {flight.duration}</h3>
+                <a href='localhost:3000/booking'><button>Book</button></a>
+                </div>)
+            }
+          </div>
         </div>
         
       </div></>
