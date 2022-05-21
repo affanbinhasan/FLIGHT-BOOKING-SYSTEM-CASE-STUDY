@@ -14,32 +14,32 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.flight.searchms.model.Flight;
 import co.flight.searchms.repository.FlightRepo;
+import co.flight.searchms.service.FlightService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/flight")
 public class FlightController {
     @Autowired
-    FlightRepo FlightRepo;
+    FlightService FlightService;
 
     @GetMapping("/admin/getflight")
     public List<Flight> getFlight(){
-        return FlightRepo.findAll();
+        return FlightService.getFlight();
     }
 
     @GetMapping("/getflight/{origin}/{destination}")
     public List<Flight> getFlightByOriginDest(@PathVariable String origin,@PathVariable String destination){
-        return FlightRepo.getMatchingFlight(origin, destination);
+        return FlightService.getFlightByOriginDest(origin, destination);
     }
 
     @GetMapping("/getflight/{id}")
     public Optional<Flight> getFlightbyId(@PathVariable String id){
-        return FlightRepo.findById(id);
+        return FlightService.getFlightbyId(id);
     }
 
     @PostMapping("/admin/addflight")
     public Flight addFlight(@RequestBody Flight flight){
-        FlightRepo.save(flight);
-        return flight;
+        return FlightService.addFlight(flight);
     }
 }
