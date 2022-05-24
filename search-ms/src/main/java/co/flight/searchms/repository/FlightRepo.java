@@ -13,7 +13,10 @@ public interface FlightRepo extends MongoRepository<Flight,String>{
 
     // @Query("{name : ?0}")
     // List<Flight> getFlightbyname();
+    @Query("{flight_origin : ?0}")
+    List<Flight> getFlightbyOrigin(String origin);
+
 
     @Query("{ $and: [ { 'flight_origin' : ?0 }, { 'flight_destination' : ?0 } ] }")
-    List<Flight> getMatchingFlight(String flight_origin,String flight_destination);
+    List<Flight> getMatchingFlight(String origin,String destination);
 }

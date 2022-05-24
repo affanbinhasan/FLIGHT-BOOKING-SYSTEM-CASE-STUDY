@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
         <div className="App">
-          <p>n</p>
+          {/* <p>n</p> */}
             <div>
                 <a href="/search"><button>Search</button></a>
                 <a href="/booking"><button>Book</button></a>
@@ -27,6 +27,11 @@ function App() {
               <Route exact path='/booking' element={<FlightBooking/>}></Route>
               <Route exact path='/check-in' element={<CheckIn/>}></Route>
             </Routes>
+
+            {/* <div class="form__group field">
+              <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+              <label for="name" class="form__label">Name</label>
+            </div> */}
 
         </div>
         </Router>

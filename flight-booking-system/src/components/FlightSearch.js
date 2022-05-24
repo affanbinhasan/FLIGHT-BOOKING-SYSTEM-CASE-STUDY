@@ -51,21 +51,22 @@ export default class FlightSearch extends Component {
   render() {
     const {origin,destination} = this.state
     return (
-      <><div className="dialog-box">
+      <><div>
         <h1 className="dialog-title">Search For Flights</h1>
         <div>
         <form onSubmit={this.submitHandler}>
                 <br/>
-                <div>
-                    <label>Origin - </label><input type="text" name='origin' value={ origin } onChange={this.changeHandler} required="true"></input>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="origin" type="text" name='origin' value={ origin } onChange={this.changeHandler} required="true"></input>
                 </div>
-                <div>
-                    <label>Destination - </label><input type="text" name='destination' value={ destination } onChange={this.changeHandler} required="true"></input>
+                
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="destination"  type="text" name='destination' value={ destination } onChange={this.changeHandler} required="true"></input>
                 </div>
                 {/* <div>
                     <label>Last Name - </label><input type="text" name='lastName' value={ lastName } onChange={this.changeHandler('user')} ></input>
                 </div> */}
-                <button type='submit'>Book</button>
+                <button type='submit'>Search</button>
             </form>
           <div id = 'searchResults' >
             {this.state.flight.map(flight => <div className='flight-info' key={flight.flight_id}>

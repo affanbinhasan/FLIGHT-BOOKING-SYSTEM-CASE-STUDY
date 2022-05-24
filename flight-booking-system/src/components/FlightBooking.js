@@ -19,6 +19,7 @@ export class FlightBooking extends Component {
                 lastName:'',
                 gender:'',
                 contact:'',
+                date_of_journey: ''
             }
       }
     }
@@ -45,26 +46,29 @@ export class FlightBooking extends Component {
     }
 
     render() {
-    const {flight_id,firstName,lastName,gender,contact} = this.state
+    const {flight_id,firstName,lastName,gender,contact,date_of_journey} = this.state
     
     return (
         <div>
             <form onSubmit={this.submitHandler}>
                 <br/>
-                <div>
-                    <label>Flight Id - </label><input type="text" name='flight_id' value={ flight_id } onChange={this.changeHandler('id')} ></input>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="flight id" type="text" name='flight_id' value={ flight_id } onChange={this.changeHandler('id')} ></input>
                 </div>
-                <div>
-                    <label>First Name - </label><input type="text" name='firstName' value={ firstName } onChange={this.changeHandler('user')} ></input>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="first name" type="text" name='firstName' value={ firstName } onChange={this.changeHandler('user')} ></input>
                 </div>
-                <div>
-                    <label>Last Name - </label><input type="text" name='lastName' value={ lastName } onChange={this.changeHandler('user')} ></input>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="last name" type="text" name='lastName' value={ lastName } onChange={this.changeHandler('user')} ></input>
                 </div>
-                <div>
-                    <label>Gender - </label><input type="text" name='gender' value={ gender } onChange={this.changeHandler('user')} ></input>
+                <div id='input_feild'>
+                   <input class="form__field" placeholder="gender" type="text" name='gender' value={ gender } onChange={this.changeHandler('user')} ></input>
                 </div>
-                <div>
-                    <label>contact - </label><input type="text" name='contact' value={ contact } onChange={this.changeHandler('user')}></input>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="contact" type="text" name='contact' value={ contact } onChange={this.changeHandler('user')}></input>
+                </div>
+                <div id='input_feild'>
+                    <input class="form__field" placeholder="date of journey" type="date" name='date_of_journey' value={ date_of_journey } onChange={this.changeHandler('user')}></input>
                 </div>
                 <button type='submit'>Book</button>
             </form>

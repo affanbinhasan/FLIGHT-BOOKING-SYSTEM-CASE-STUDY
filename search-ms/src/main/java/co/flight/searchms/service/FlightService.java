@@ -1,7 +1,9 @@
 package co.flight.searchms.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,9 +23,12 @@ public class FlightService {
 
     
     public List<Flight> getFlightByOriginDest(String origin,String destination){
-        String orgn = origin.toUpperCase();
-        String dest = destination.toUpperCase();
-        return FlightRepo.getMatchingFlight(orgn, dest);
+        // String orgn = origin.toUpperCase();
+        // String dest = destination.toUpperCase();
+        // return FlightRepo.getMatchingFlight(origin, destination);
+        List<Flight> flights = FlightRepo.getFlightbyOrigin(origin);
+        List<Flight> flightResulList = flights.stream().filter(m -> destination.equals(m.getFlight_destination())).toList();
+        return flightResulList;
     }
 
     

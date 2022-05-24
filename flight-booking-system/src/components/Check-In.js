@@ -48,8 +48,8 @@ export class CheckIn extends React.Component{
             <div >
             <form onSubmit={this.submitHandler}>
                 <br/>
-                <div>
-                    <label>Booking Reference ID - </label><input type="ref_id" name='ref_id' value={ ref_id } onChange={this.changeHandler} required="true"></input>
+                <div id="input_feild">
+                    <input class="form__field" placeholder="reference id" type="ref_id" name='ref_id' value={ ref_id } onChange={this.changeHandler} required="true"></input>
                 </div>
                 
                 {/* <div>
