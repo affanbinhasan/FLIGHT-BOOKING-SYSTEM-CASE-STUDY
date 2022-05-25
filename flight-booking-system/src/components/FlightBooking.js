@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:9000/flight-booking-ms/booking'
-    // baseURL: "http://localhost:9002/booking"
+    // baseURL: 'http://localhost:9000/flight-booking-ms/booking'
+    baseURL: "http://localhost:9002/booking"
 })
 
 export class FlightBooking extends Component {
@@ -20,7 +20,8 @@ export class FlightBooking extends Component {
                 gender:'',
                 contact:'',
                 date_of_journey: ''
-            }
+            },
+            boooking_id: ''
       }
     }
 
@@ -41,7 +42,10 @@ export class FlightBooking extends Component {
         console.log('id is = ' + this.state.id.flight_id );
         console.log(this.state.user);
         api.post("/book/"+this.state.id.flight_id , this.state.user)
-        .then( response => { console.log(response.status) })
+        .then( response => { 
+            this.setState({boooking_id : response.data})
+            console.log(response.status) 
+        })
         .catch( error => { console.log(error)})
     }
 

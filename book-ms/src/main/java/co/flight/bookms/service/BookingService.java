@@ -33,13 +33,13 @@ public class BookingService {
     // }
 
     
-    public Booking getBooking(User user,String id){
+    public String getBooking(User user,String id){
         Flight flight = restTemplate.getForObject("http://flight-search-ms/flight/getflight/"+id, Flight.class);
         User user_dum = user;
         String uniqueID = UUID.randomUUID().toString();
         Booking booking = new Booking(uniqueID, flight, user_dum, 200);
         BookingRepo.save(booking);
-        return booking;
+        return uniqueID;
     }
 
     

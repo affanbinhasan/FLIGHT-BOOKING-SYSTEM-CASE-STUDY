@@ -4,7 +4,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:9000/flight-search-ms/'
+  // baseURL: 'http://localhost:9000/flight-search-ms/'
+  baseURL:'http://localhost:9001/'
 })
 
 
@@ -35,9 +36,10 @@ export default class FlightSearch extends Component {
     event.preventDefault();
     api.get('flight/getflight/' + this.state.origin+ "/" + this.state.destination)
     .then(response => {
+      this.setState({ flight: response.data})
       if(response === 200){
       console.log(response.data)
-      this.setState({ flight: response.data})
+      
       console.log(this.state)}
       else{
         console.log("error getting data" + response.data)
@@ -71,7 +73,7 @@ export default class FlightSearch extends Component {
           <div id = 'searchResults' >
             {this.state.flight.map(flight => <div className='flight-info' key={flight.flight_id}>
             
-                <h3>flight name : {flight.flight_name}    origin : {flight.flight_origin}    destination : {flight.flight_destination} duration : {flight.duration}</h3>
+                <h3>Flight id : {flight.flight_id} flight name : {flight.flight_name}    origin : {flight.flight_origin}    destination : {flight.flight_destination} duration : {flight.duration}</h3>
                 <a href='localhost:3000/booking'><button>Book</button></a>
                 </div>)
             }

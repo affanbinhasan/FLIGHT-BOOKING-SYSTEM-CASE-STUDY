@@ -28,7 +28,7 @@ public class BookingController {
     BookingService BookingService;
 
     @PostMapping("/book/{id}")
-    public Booking getBooking(@RequestBody User user,@PathVariable String id){
+    public String getBooking(@RequestBody User user,@PathVariable String id){
         
         return BookingService.getBooking(user, id);
     }
