@@ -33,6 +33,9 @@ public class Flight {
         this.duration = duration;
     }
     
+    public Flight() {
+    }
+
     public String getFlight_id() {
         return flight_id;
     }

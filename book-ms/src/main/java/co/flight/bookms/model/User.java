@@ -10,6 +10,13 @@ public class User {
     String gender;
     String contact;
     String date_of_journey;
+    public User(String firstName, String lastName, String gender, String contact, String date_of_journey) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.contact = contact;
+        this.date_of_journey = date_of_journey;
+    }
     // //String address;
     public User() {
     }
