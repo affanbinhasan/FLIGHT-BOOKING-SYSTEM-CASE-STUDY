@@ -7,13 +7,13 @@ const api = axios.create({
 })
 
 export class FlightBooking extends Component {
-    constructor(props) {
-      super(props)
-      
+    constructor() {
+      super()
       this.state = {
-            id : {
-                flight_id:''
-            },
+            // id : {
+            //     flight_id:''
+            // },
+            flight_id:'',
             user : {
                 firstName:'',
                 lastName:'',
@@ -24,6 +24,15 @@ export class FlightBooking extends Component {
             boooking_id: ''
       }
     }
+
+    // Component = (props) => {
+    //     return(
+    //         this.setState()
+    //     )
+    // }
+    // changeState = (props) => {
+    //     this.setState({flight_id : props.flight_id})
+    // }
 
     changeHandler = (obj) => event => {
         const category = {...this.state[obj]}
@@ -39,7 +48,7 @@ export class FlightBooking extends Component {
 
     submitHandler = event => {
         event.preventDefault();
-        console.log('id is = ' + this.state.id.flight_id );
+        console.log('id is = ' + this.state.flight_id );
         console.log(this.state.user);
         api.post("/book/"+this.state.id.flight_id , this.state.user)
         .then( response => { 
@@ -50,35 +59,39 @@ export class FlightBooking extends Component {
     }
 
     render() {
-    const {flight_id,firstName,lastName,gender,contact,date_of_journey} = this.state
+
+        console.log(this.props.id)
+
+        const {firstName,lastName,gender,contact,date_of_journey} = this.state
     
-    return (
-        <div>
-            <form onSubmit={this.submitHandler}>
-                <br/>
-                <div id='input_feild'>
-                    <input class="form__field" placeholder="flight id" type="text" name='flight_id' value={ flight_id } onChange={this.changeHandler('id')} ></input>
-                </div>
-                <div id='input_feild'>
-                    <input class="form__field" placeholder="first name" type="text" name='firstName' value={ firstName } onChange={this.changeHandler('user')} ></input>
-                </div>
-                <div id='input_feild'>
-                    <input class="form__field" placeholder="last name" type="text" name='lastName' value={ lastName } onChange={this.changeHandler('user')} ></input>
-                </div>
-                <div id='input_feild'>
-                   <input class="form__field" placeholder="gender" type="text" name='gender' value={ gender } onChange={this.changeHandler('user')} ></input>
-                </div>
-                <div id='input_feild'>
-                    <input class="form__field" placeholder="contact" type="text" name='contact' value={ contact } onChange={this.changeHandler('user')}></input>
-                </div>
-                <div id='input_feild'>
-                    <input class="form__field" placeholder="date of journey" type="date" name='date_of_journey' value={ date_of_journey } onChange={this.changeHandler('user')}></input>
-                </div>
-                <button type='submit'>Book</button>
-            </form>
-        </div>
-    )
+        return (
+            <div>
+                <form onSubmit={this.submitHandler}>
+                    <br/>
+                    {/* <div id='input_feild'>
+                        <input class="form__field" placeholder="flight id" type="text" name='flight_id' value={ flight_id } onChange={this.changeHandler('id')} ></input>
+                    </div> */}
+                    <label>flight id is {this.state.flight_id}</label>
+                    <div id='input_feild'>
+                        <input class="form__field" placeholder="first name" type="text" name='firstName' value={ firstName } onChange={this.changeHandler('user')} ></input>
+                    </div>
+                    <div id='input_feild'>
+                        <input class="form__field" placeholder="last name" type="text" name='lastName' value={ lastName } onChange={this.changeHandler('user')} ></input>
+                    </div>
+                    <div id='input_feild'>
+                    <input class="form__field" placeholder="gender" type="text" name='gender' value={ gender } onChange={this.changeHandler('user')} ></input>
+                    </div>
+                    <div id='input_feild'>
+                        <input class="form__field" placeholder="contact" type="text" name='contact' value={ contact } onChange={this.changeHandler('user')}></input>
+                    </div>
+                    <div id='input_feild'>
+                        <input class="form__field" placeholder="date of journey" type="date" name='date_of_journey' value={ date_of_journey } onChange={this.changeHandler('user')}></input>
+                    </div>
+                    <button type='submit'>Book</button>
+                </form>
+            </div>
+        )
     }
 }
 
-export default FlightBooking
+export default FlightBooking;

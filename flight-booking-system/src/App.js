@@ -12,13 +12,15 @@ import Search from './components/Search';
 function App() {
   return (
     <Router>
-        <div className="App">
+        <div className="App" id='App'>
           {/* <p>n</p> */}
-            <div>
+            <div id='navbar'>
                 <a href="/search"><button>Search</button></a>
                 <a href="/booking"><button>Book</button></a>
                 <a href="/check-in"><button>Check-In</button></a>
+                <a href="/"><button>Home</button></a>
             </div>
+            
             {/* <Search/> */}
             {/* <FlightSearch/> */}
             {/* <FlightBooking/> */}

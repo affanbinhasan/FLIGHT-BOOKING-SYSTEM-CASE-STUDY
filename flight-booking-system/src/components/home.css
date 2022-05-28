@@ -9,6 +9,7 @@ button{
     vertical-align: middle;
     margin-left: 100px;
     margin-right: 100px;
+    margin-top: 20px;
     height: 50px;
     width: 100px;
     background-image: linear-gradient(to right, #11998e,#38ef7d);
@@ -25,3 +26,4 @@ Link{
     margin-top: 50px;
     margin-bottom: 50px;
 }
+

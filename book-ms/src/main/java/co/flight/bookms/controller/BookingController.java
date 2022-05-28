@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.flight.bookms.model.Booking;
+import co.flight.bookms.model.Flight;
 import co.flight.bookms.model.User;
 import co.flight.bookms.service.BookingService;
 
@@ -42,6 +43,11 @@ public class BookingController {
     public Booking getCheckIn(@PathVariable String id){
         
         return BookingService.getCheckIn(id);
+    }
+
+    @GetMapping("/book/complete/{id}")
+    public Flight doCheckin(@PathVariable String id){
+        return BookingService.doCheckIn(id);
     }
    
 }

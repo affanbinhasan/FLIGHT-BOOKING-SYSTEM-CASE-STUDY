@@ -11,8 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
+import co.flight.checkinms.exception.NoBookingFoundException;
+import co.flight.checkinms.exception.NoCheckInFoundException;
+import co.flight.checkinms.exception.NoFlightFoundException;
 import co.flight.checkinms.model.Booking;
 import co.flight.checkinms.model.CheckIn;
+import co.flight.checkinms.model.Flight;
 import co.flight.checkinms.repository.CheckInRepo;
 
 @Component
@@ -46,22 +50,58 @@ public class CheckInService {
     
     public List<CheckIn> getCheckIn(String id){
 
-        Booking booking = restTemplate.getForObject("http://flight-booking-ms/booking/book/"+id, Booking.class);
+        try {
+            Booking booking = restTemplate.getForObject("http://flight-booking-ms/booking/book/"+id, Booking.class);
 
-        String booking_id = booking.getBooking_ref_id();
-        String seatNo = alotSeat();
-        String uniqueID = UUID.randomUUID().toString();
+            if (booking ==  null) {
+                throw new NoBookingFoundException("No Booking Available For Id : " + id);
+            } else {
+                String booking_id = booking.getBooking_ref_id();
+                String flight_id = booking.getFlight().getFlight_id();
+                String seatNo = alotSeat();
+                String uniqueID = UUID.randomUUID().toString();
 
-        CheckIn checkIn = new CheckIn(uniqueID,booking_id,seatNo);
+                try {
+                    Flight bookingComplete = restTemplate.getForObject("http://flight-search-ms/flight/admin/avail/"+flight_id, Flight.class);
+
+                    if (bookingComplete == null) {
+                        throw new NoFlightFoundException("Unable to find Flight againd id : " + id );
+                    } else {
+                        CheckIn checkIn = new CheckIn(uniqueID,booking_id,seatNo);
+                
+                        List<CheckIn> newList = Arrays.asList(checkIn);
+                        
+                        CheckInrepo.save(checkIn);
+                        return newList;
+                    }
+                } catch (NoFlightFoundException e) {
+                    System.out.println(e.getMessage());
+                }
+                 
+            }
+        } catch (NoBookingFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
         
-        List<CheckIn> newList = Arrays.asList(checkIn);
+        return null;
         
-        CheckInrepo.save(checkIn);
-        return newList;
     }
 
     
     public List<CheckIn> getAllCheckIn(){
-        return CheckInrepo.findAll();
+        try {
+            List<CheckIn> checkin = CheckInrepo.findAll();
+
+            if (checkin == null) {
+                throw new NoCheckInFoundException("Unable to fetch CheckIn data from the Database");
+            } else {
+                return checkin;
+            }
+            
+        } catch (NoCheckInFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

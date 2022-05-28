@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Document("Flight")
+@Document("flight-inventory")
 public class Flight {
     @Id
     private String flight_id;
@@ -17,15 +17,19 @@ public class Flight {
     private String flight_destination;
     private String flight_arrival;
     private String flight_departure;
+    private int flight_seat_no;
     private int duration;
+    
+    
     public Flight(String flight_id, String flight_name, String flight_origin, String flight_destination,
-            String flight_arrival, String flight_departure, int duration) {
+            String flight_arrival, String flight_departure, int flight_seat_no, int duration) {
         this.flight_id = flight_id;
         this.flight_name = flight_name;
         this.flight_origin = flight_origin;
         this.flight_destination = flight_destination;
         this.flight_arrival = flight_arrival;
         this.flight_departure = flight_departure;
+        this.flight_seat_no = flight_seat_no;
         this.duration = duration;
     }
     
@@ -72,10 +76,21 @@ public class Flight {
         this.duration = duration;
     }
 
+    public int getFlight_seat_no() {
+        return flight_seat_no;
+    }
+
+    public void setFlight_seat_no(int flight_seat_no) {
+        this.flight_seat_no = flight_seat_no;
+    }
+
     @Override
     public String toString() {
         return "Flight [duration=" + duration + ", flight_arrival=" + flight_arrival + ", flight_departure="
                 + flight_departure + ", flight_destination=" + flight_destination + ", flight_id=" + flight_id
-                + ", flight_name=" + flight_name + ", flight_origin=" + flight_origin + "]";
+                + ", flight_name=" + flight_name + ", flight_origin=" + flight_origin + ", flight_seat_no="
+                + flight_seat_no + "]";
     }
+
+    
 }

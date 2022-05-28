@@ -7,14 +7,14 @@ public class Booking {
     private String booking_ref_id;
     private Flight flight;
     private User user;
-    private int amount_to_pay;
-    public Booking(String booking_ref_id, Flight flight, User user, int amount_to_pay) {
+    private String booking_status;
+    public Booking() {
+    }
+    public Booking(String booking_ref_id, Flight flight, User user, String booking_status) {
         this.booking_ref_id = booking_ref_id;
         this.flight = flight;
         this.user = user;
-        this.amount_to_pay = amount_to_pay;
-    }
-    public Booking() {
+        this.booking_status = booking_status;
     }
     public String getBooking_ref_id() {
         return booking_ref_id;
@@ -34,15 +34,15 @@ public class Booking {
     public void setUser(User user) {
         this.user = user;
     }
-    public int getAmount_to_pay() {
-        return amount_to_pay;
+    public String getBooking_status() {
+        return booking_status;
     }
-    public void setAmount_to_pay(int amount_to_pay) {
-        this.amount_to_pay = amount_to_pay;
+    public void setBooking_status(String booking_status) {
+        this.booking_status = booking_status;
     }
     @Override
     public String toString() {
-        return "Booking [amount_to_pay=" + amount_to_pay + ", booking_ref_id=" + booking_ref_id + ", flight=" + flight
+        return "Booking [booking_ref_id=" + booking_ref_id + ", booking_status=" + booking_status + ", flight=" + flight
                 + ", user=" + user + "]";
     }
     

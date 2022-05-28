@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import axios from 'axios';
+import FlightBooking from './FlightBooking';
 
 const api = axios.create({
   // baseURL: 'http://localhost:9000/flight-search-ms/'
@@ -56,7 +57,7 @@ export default class FlightSearch extends Component {
       <><div>
         <h1 className="dialog-title">Search For Flights</h1>
         <div>
-        <form onSubmit={this.submitHandler}>
+            <form onSubmit={this.submitHandler}>
                 <br/>
                 <div id='input_feild'>
                     <input class="form__field" placeholder="origin" type="text" name='origin' value={ origin } onChange={this.changeHandler} required="true"></input>
@@ -70,14 +71,27 @@ export default class FlightSearch extends Component {
                 </div> */}
                 <button type='submit'>Search</button>
             </form>
-          <div id = 'searchResults' >
-            {this.state.flight.map(flight => <div className='flight-info' key={flight.flight_id}>
-            
-                <h3>Flight id : {flight.flight_id} flight name : {flight.flight_name}    origin : {flight.flight_origin}    destination : {flight.flight_destination} duration : {flight.duration}</h3>
-                <a href='localhost:3000/booking'><button>Book</button></a>
-                </div>)
-            }
+          
           </div>
+          <div id='searchResult'>
+            <div >
+              {this.state.flight.map(flight => <div id='searchCard' key={flight.flight_id}>
+              
+                
+                  <div class="inline"><p>{flight.flight_origin}</p></div>
+                  <div class="inline"><p>{flight.flight_destination}</p></div>
+                  <div class="inline"><p>{flight.flight_arrival}</p></div>
+                  <div class="inline"><p>{flight.flight_departure}</p></div>
+                  <div class="inline"><p>{flight.flight_name}</p></div>
+                  <div class="inline">
+                    <a href='/booking' >
+                      <button id="bookbtn">Book</button></a>
+                
+                  </div>
+                  {/* <a href='localhost:3000/booking'><button>Book</button></a> */}
+                  </div>)
+              }
+            </div>
         </div>
         
       </div></>
