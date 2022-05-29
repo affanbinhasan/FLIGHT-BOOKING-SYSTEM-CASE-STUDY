@@ -1,4 +1,4 @@
-package co.flight.bookms;
+package co.flight.checkinms;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,9 +23,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import co.flight.bookms.controller.*;
-import co.flight.bookms.model.*;
-import co.flight.bookms.service.*;
+import co.flight.checkinms.controller.*;
+import co.flight.checkinms.model.*;
+import co.flight.checkinms.service.*;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -42,44 +42,36 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import co.flight.checkinms.repository.*;
+
 @SpringBootTest
-@ContextConfiguration(classes=BookMsApplication.class)
+@ContextConfiguration(classes=CheckInMsApplication.class)
 @WithMockUser
 @AutoConfigureMockMvc
-public class BookingControllerTest {
+public class CheckInControllerTest {
     @Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private BookingService BookingService;
+	private CheckInService CheckInService;
 
-	Flight mockFlight = new Flight("spicy007", "SpicyJet", "DLI","NYC","test","test",80,900);
-    Optional<Flight> flight = Optional.of(mockFlight);
-	String exampleFlightJson = "{\"flight_id\":\"spicy007\",\"flight_name\":\"SpiceJet\",\"flight_origin\":\"DLI\",\"flight_destination\":\"NYC\",\"flight_arrival\":\"test\",\"flight_destination\":\"test\",\"flight_seat_no\":\"80\",\"destiantion\":\"900\"}";
+	List<CheckIn> mockCheckIn =  Arrays.asList(new CheckIn("test", "test", "test"));
 
-    User user = new User("test","test","test","test","test");
-
-    Booking mockBooking = new Booking("wfehaouh", mockFlight, user, "booked");
-    String exampleBookingJson = "{\"booking_ref_id\":\"wfehaouh\",\"{\"flight_id\":\"spicy007\",\"flight_name\":\"SpiceJet\",\"flight_origin\":\"DLI\",\"flight_destination\":\"NYC\",\"flight_arrival\":\"test\",\"flight_destination\":\"test\",\"flight_seat_no\":\"80\",\"destiantion\":\"900\"}\",\"{}\",\"booking_status\":\"booked\"}";
-    String exampleUserJson = "{\"first_name\":\"dummy\",\"last_name\":\"bummy\",\"gender\":\"male\",\"contact\":\"9090909\",\"date_of_journey\":\"24-07-2022\",}";
-    @Test
-	public void retrieveBookingById() throws Exception {
-        Mockito.when(BookingService.getBooking(Mockito.any(User.class),Mockito.anyString()))
-        .thenReturn("Booking Done");
+	@Test
+	public void retrieveCheckInById() throws Exception {
+		
+		Mockito.when(CheckInService.getCheckIn(Mockito.anyString())).thenReturn(mockCheckIn);
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-        .post("/booking/book/wfehaouh").content(exampleUserJson)
-        .accept(MediaType.APPLICATION_JSON);
+        .get("/check-in/checkin/test")
+        .accept( MediaType.APPLICATION_JSON);
 
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-        MockHttpServletResponse response = result.getResponse();
+		System.out.println(result.getResponse());
+		String expected = "[{checkInId:test,booking_ref_id:test,seatNo:test}]";
 
-        String expected = "uwaebvwiu";
-        assertNotEquals(HttpStatus.CREATED.value(), response.getStatus());
-
-        //unparsable json Error
-        // assertNotEquals(expected, result.getResponse()
-		// 		.getContentAsString());
-    }
+        //unparsableJSON Error
+		JSONAssert.assertNotEquals(expected, result.getResponse().getContentAsString(), true);
+	}
 }

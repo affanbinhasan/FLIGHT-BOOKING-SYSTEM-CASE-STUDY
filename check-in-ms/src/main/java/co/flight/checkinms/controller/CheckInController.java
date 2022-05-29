@@ -17,7 +17,7 @@ import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/flight-check-in")
+@RequestMapping("/check-in")
 public class CheckInController {
     
     @Autowired
