@@ -63,19 +63,17 @@ public class FlightControllerTest {
 	@Test
 	public void retrieveFlightById() throws Exception {
 		
-		Mockito.when(
-				FlightService.getFlightbyId(Mockito.anyString())).thenReturn(flight);
+		Mockito.when(FlightService.getFlightbyId(Mockito.anyString()))
+		.thenReturn(flight);
 
-            RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                    "/flight/getflight/spicy007").accept(
-                    MediaType.APPLICATION_JSON);
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
+				"/flight/getflight/spicy007").accept(
+				MediaType.APPLICATION_JSON);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
 		System.out.println(result.getResponse());
 		String expected = "{flight_id:spicy007,flight_name:SpicyJet,flight_origin:DLI,flight_destination:NYC,flight_arrival:test,flight_departure:test,flight_seat_no:80,duration:900}";
-
-		// {"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import Project","First Example","Second Example"]}
 
 		JSONAssert.assertEquals(expected, result.getResponse()
 				.getContentAsString(), false);
