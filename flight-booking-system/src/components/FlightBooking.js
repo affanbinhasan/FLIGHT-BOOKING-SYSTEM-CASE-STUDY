@@ -10,10 +10,9 @@ export class FlightBooking extends Component {
     constructor() {
       super()
       this.state = {
-            // id : {
-            //     flight_id:''
-            // },
-            flight_id:'',
+            id : {
+                flight_id:''
+            },
             user : {
                 firstName:'',
                 lastName:'',
@@ -21,7 +20,8 @@ export class FlightBooking extends Component {
                 contact:'',
                 date_of_journey: ''
             },
-            boooking_id: ''
+            booking_id: '',
+            bookingStr:'',
       }
     }
 
@@ -49,29 +49,31 @@ export class FlightBooking extends Component {
     submitHandler = event => {
         event.preventDefault();
         console.log('id is = ' + this.state.flight_id );
-        console.log(this.state.user);
         api.post("/book/"+this.state.id.flight_id , this.state.user)
         .then( response => { 
-            this.setState({boooking_id : response.data})
-            console.log(response.status) 
+            this.setState({booking_id : response.data})
+            console.log(response.data)
+            console.log(this.state.booking_id)
         })
         .catch( error => { console.log(error)})
+
+        this.setState({bookingStr: 'Your Booking ID is ' + this.state.booking_id})
     }
 
     render() {
 
         console.log(this.props.id)
 
-        const {firstName,lastName,gender,contact,date_of_journey} = this.state
+        const {flight_id,firstName,lastName,gender,contact,date_of_journey} = this.state
     
         return (
             <div>
+                <h1 className="dialog-title">Book Your Flight</h1>
                 <form onSubmit={this.submitHandler}>
                     <br/>
-                    {/* <div id='input_feild'>
+                    <div id='input_feild'>
                         <input class="form__field" placeholder="flight id" type="text" name='flight_id' value={ flight_id } onChange={this.changeHandler('id')} ></input>
-                    </div> */}
-                    <label>flight id is {this.state.flight_id}</label>
+                    </div>
                     <div id='input_feild'>
                         <input class="form__field" placeholder="first name" type="text" name='firstName' value={ firstName } onChange={this.changeHandler('user')} ></input>
                     </div>
@@ -89,6 +91,9 @@ export class FlightBooking extends Component {
                     </div>
                     <button type='submit'>Book</button>
                 </form>
+                <div>
+                    <h1>{this.state.booking_id}</h1>
+                </div>
             </div>
         )
     }

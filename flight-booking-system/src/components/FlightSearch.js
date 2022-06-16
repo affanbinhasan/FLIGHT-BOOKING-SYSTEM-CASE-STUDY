@@ -73,17 +73,18 @@ export default class FlightSearch extends Component {
             </form>
           
           </div>
+          <div id="space"></div>
           <div id='searchResult'>
             <div >
               {this.state.flight.map(flight => <div id='searchCard' key={flight.flight_id}>
               
-                
+                  <div class="inline"><p>{flight.flight_id}</p></div>
                   <div class="inline"><p>{flight.flight_origin}</p></div>
                   <div class="inline"><p>{flight.flight_destination}</p></div>
                   <div class="inline"><p>{flight.flight_arrival}</p></div>
                   <div class="inline"><p>{flight.flight_departure}</p></div>
                   <div class="inline"><p>{flight.flight_name}</p></div>
-                  <div class="inline">
+                  <div>
                     <a href='/booking' >
                       <button id="bookbtn">Book</button></a>
                 

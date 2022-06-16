@@ -27,3 +27,21 @@ Link{
     margin-bottom: 50px;
 }
 
+button:hover{
+    background-image: linear-gradient(to right, red , orange);
+}
+
+/* input.error {
+    border-bottom: 2px solid red;
+} */
+
+.input-feedback {
+    color: rgb(235, 54, 54);
+    margin-top: -15px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  #space{
+      height: 100px;
+  }

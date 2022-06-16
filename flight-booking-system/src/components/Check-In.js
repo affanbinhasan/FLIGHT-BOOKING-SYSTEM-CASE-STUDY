@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = axios.create({
     // baseURL: 'http://localhost:9000/flight-check-in-ms/flight-check-in'
-    baseURL: "http://localhost:9003/flight-check-in"
+    baseURL: "http://localhost:9003/check-in"
 })
 
 export class CheckIn extends React.Component{
@@ -61,7 +61,7 @@ export class CheckIn extends React.Component{
             <div id = 'CheckInResults'>
           {this.state.checkin.map(checkin => <div className='check-in-info' key={checkin.checkInId}>
           
-              <h3>Thank You for Checking In Your Seat Number is : {checkin.seatNo}</h3>
+              <h1>Thank You for Checking In Your Seat Number is : {checkin.seatNo}</h1>
               
           </div>)
           }

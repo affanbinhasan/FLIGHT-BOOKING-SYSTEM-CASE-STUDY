@@ -22,7 +22,7 @@ public class FlightService {
         try {
             List<Flight> flights = FlightRepo.findAll();
             if(flights.isEmpty()){
-                throw new NoFlightFoundException("No Origins Found");
+                throw new NoFlightFoundException("Error Getting Data From Database");
             }
             else{
                 return FlightRepo.findAll();
